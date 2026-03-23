@@ -1,0 +1,30 @@
+// Debug.xcconfig
+// Debug-specific build settings
+
+#include "Shared.xcconfig"
+
+// Swift Settings
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG
+
+// Code Signing (use automatic for debug)
+CODE_SIGN_IDENTITY = Apple Development
+CODE_SIGN_STYLE = Automatic
+
+// Debug Information
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+GCC_GENERATE_DEBUGGING_SYMBOLS = YES
+COPY_PHASE_STRIP = NO
+
+// Enable testability
+ENABLE_TESTABILITY = YES
+
+// Local secrets (not committed to git) — takes priority over placeholders below
+#include? "Secrets.xcconfig"
+
+// Supabase Configuration fallback (override via Secrets.xcconfig)
+SUPABASE_URL = https:/$()/your-project.supabase.co
+SUPABASE_ANON_KEY = your-anon-key-here
+
+// Sentry DSN
+SENTRY_DSN =

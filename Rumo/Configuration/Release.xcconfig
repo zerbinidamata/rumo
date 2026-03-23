@@ -1,0 +1,29 @@
+// Release.xcconfig
+// Release-specific build settings
+
+#include "Shared.xcconfig"
+
+// Swift Settings
+SWIFT_OPTIMIZATION_LEVEL = -O
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE
+
+// Code Signing
+CODE_SIGN_IDENTITY = Apple Distribution
+CODE_SIGN_STYLE = Manual
+PROVISIONING_PROFILE_SPECIFIER =
+
+// Strip Debug Symbols
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+GCC_GENERATE_DEBUGGING_SYMBOLS = YES
+COPY_PHASE_STRIP = YES
+STRIP_INSTALLED_PRODUCT = YES
+
+// Disable testability in release
+ENABLE_TESTABILITY = NO
+
+// Supabase Configuration (injected via CI/CD environment)
+SUPABASE_URL = ${SUPABASE_URL}
+SUPABASE_ANON_KEY = ${SUPABASE_ANON_KEY}
+
+// Sentry DSN
+SENTRY_DSN = ${SENTRY_DSN}

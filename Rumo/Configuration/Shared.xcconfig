@@ -1,0 +1,43 @@
+// Shared.xcconfig
+// Build settings shared between Debug and Release
+
+// Deployment Target
+IPHONEOS_DEPLOYMENT_TARGET = 17.0
+WATCHOS_DEPLOYMENT_TARGET = 10.0
+
+// Swift Version
+SWIFT_VERSION = 6.0
+
+// Strict Concurrency (Swift 6)
+SWIFT_STRICT_CONCURRENCY = complete
+
+// Bundle Identifiers
+PRODUCT_BUNDLE_IDENTIFIER = com.rumo.app
+WIDGET_BUNDLE_IDENTIFIER = com.rumo.app.widget
+WATCH_BUNDLE_IDENTIFIER = com.rumo.app.watchkitapp
+INTENTS_BUNDLE_IDENTIFIER = com.rumo.app.intents
+
+// App Group (shared between app and extensions)
+APP_GROUP_IDENTIFIER = group.com.rumo.shared
+
+// Team ID (replace with your team ID)
+DEVELOPMENT_TEAM = XXXXXXXXXX
+
+// Architectures
+ARCHS = arm64
+
+// Enable Modules
+CLANG_ENABLE_MODULES = YES
+
+// Swift Compilation Mode
+SWIFT_COMPILATION_MODE = wholemodule
+
+// Localization
+LOCALIZATION_PREFERS_STRING_CATALOGS = YES
+
+// Asset Catalog
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor
+
+// Info.plist is managed via Rumo/Resources/Info.plist (not auto-generated)
+INFOPLIST_KEY_CFBundleDisplayName = Rumo
