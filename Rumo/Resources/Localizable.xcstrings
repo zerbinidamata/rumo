@@ -1007,6 +1007,108 @@
         }
       }
     },
+    "lists.color" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Color"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cor"
+          }
+        }
+      }
+    },
+    "lists.icon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icon"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ícone"
+          }
+        }
+      }
+    },
+    "lists.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome"
+          }
+        }
+      }
+    },
+    "lists.new" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New List"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova Lista"
+          }
+        }
+      }
+    },
+    "lists.preview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prévia"
+          }
+        }
+      }
+    },
+    "lists.previewName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My List"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minha Lista"
+          }
+        }
+      }
+    },
     "login.email.invalid" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1241,6 +1343,140 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verifique seu email"
+          }
+        }
+      }
+    },
+    "matrix.delegate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Urgent & Not Important" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Urgente e Não Importante" } }
+      }
+    },
+    "matrix.doFirst" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Urgent & Important" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Urgente e Importante" } }
+      }
+    },
+    "matrix.eliminate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not Urgent & Not Important" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Não Urgente e Não Importante" } }
+      }
+    },
+    "matrix.empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhuma"
+          }
+        }
+      }
+    },
+    "matrix.important" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Important"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importante"
+          }
+        }
+      }
+    },
+    "matrix.more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld more"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld mais"
+          }
+        }
+      }
+    },
+    "matrix.more %@" : {
+      "comment" : "A label at the bottom of the Eisenhower Matrix that indicates there are more tasks beyond the first five displayed. The number inside the parentheses is replaced with the actual number of remaining tasks.",
+      "isCommentAutoGenerated" : true
+    },
+    "matrix.notImportant" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Important"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não Importante"
+          }
+        }
+      }
+    },
+    "matrix.notUrgent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Urgent"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não Urgente"
+          }
+        }
+      }
+    },
+    "matrix.schedule" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not Urgent & Important" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Não Urgente e Importante" } }
+      }
+    },
+    "matrix.urgent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urgent"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urgente"
           }
         }
       }
@@ -2180,6 +2416,40 @@
         }
       }
     },
+    "pomodoro.notification.breakDone" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Break's over — ready to focus again?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausa encerrada — pronto para focar?"
+          }
+        }
+      }
+    },
+    "pomodoro.notification.workDone" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomodoro complete! Time for a break."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomodoro concluído! Hora de uma pausa."
+          }
+        }
+      }
+    },
     "pomodoro.workComplete" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2694,6 +2964,23 @@
         }
       }
     },
+    "sort.urgency" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urgency"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urgência"
+          }
+        }
+      }
+    },
     "tasks.add" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2707,6 +2994,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicionar Tarefa"
+          }
+        }
+      }
+    },
+    "tasks.add.full" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Task"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova Tarefa"
+          }
+        }
+      }
+    },
+    "tasks.add.quick" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Add"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar Rápido"
           }
         }
       }
@@ -3068,6 +3389,23 @@
         }
       }
     },
+    "tasks.editor.tags" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tags"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tags"
+          }
+        }
+      }
+    },
     "tasks.editor.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3204,6 +3542,57 @@
         }
       }
     },
+    "tasks.quickAdd.custom" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizar"
+          }
+        }
+      }
+    },
+    "tasks.quickAdd.nextWeek" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next Week"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Próx. Semana"
+          }
+        }
+      }
+    },
+    "tasks.quickAdd.noDate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Date"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem Data"
+          }
+        }
+      }
+    },
     "tasks.quickAdd.placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3234,6 +3623,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicionar Rápido"
+          }
+        }
+      }
+    },
+    "tasks.quickAdd.today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoje"
+          }
+        }
+      }
+    },
+    "tasks.quickAdd.tomorrow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tomorrow"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amanhã"
           }
         }
       }
@@ -3285,6 +3708,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar tarefas"
+          }
+        }
+      }
+    },
+    "tasks.inProgress" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Focus"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Em Foco"
           }
         }
       }

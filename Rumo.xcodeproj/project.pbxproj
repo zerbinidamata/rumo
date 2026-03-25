@@ -76,6 +76,7 @@
 		997A3D44F809B04F47383A57 /* QuickAddParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF746952E40C3E62E70C5D68 /* QuickAddParser.swift */; };
 		9A8BB7B059DCF4AF4F4F1D64 /* HabitCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E477F182188E2C09A9E04B /* HabitCategory.swift */; };
 		A0A0BB87135277EF5490D35D /* AuthCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD564BB975FEE63DFA42266B /* AuthCoordinatorView.swift */; };
+		A1262A953041F2BA31CFBBBF /* EisenhowerMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521E1C3FE1730CCEF38000D /* EisenhowerMatrixView.swift */; };
 		A88C635C432F26F9CB55579B /* TaskTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F7CFA5A6CCEF598B0984DB /* TaskTag.swift */; };
 		A9ECCD79468A3C118E710953 /* JournalPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6282D3A6F4DE7BC569AD23 /* JournalPrompt.swift */; };
 		AD97F60A2DF6044836E1F758 /* HabitLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AF3160D407357ED55F1AEB /* HabitLog.swift */; };
@@ -110,6 +111,7 @@
 		ECE648C60F9188B6B4741769 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1CA9EA4A41AFA148A2636 /* OnboardingView.swift */; };
 		EE39F449FC82DA63E5684D36 /* RumoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A861568B76D098297A96D /* RumoApp.swift */; };
 		EE7D7DE2C90E5D63E9C72B2D /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AD7D6F2ED6FA9935AC34E1 /* AuthViewModel.swift */; };
+		F00143B8D5E6B4D84D5242EC /* EisenhowerMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521E1C3FE1730CCEF38000D /* EisenhowerMatrixView.swift */; };
 		F0125AD01E44E75C366CDD11 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F46CC942C2805065D42135 /* View+Extensions.swift */; };
 		F0CEB38D8973589C502E639D /* ModelContainer+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B522AD6124F4F7D62FD8DA8 /* ModelContainer+Shared.swift */; };
 		F2AAF00205BD4CCA10C8A4ED /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77C4D9EA36E310D9208ADD3 /* TaskListView.swift */; };
@@ -150,6 +152,7 @@
 		09F973B541A964EF2B2F71BE /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		143F9FBD9AFA89819B602A0C /* Rumo-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rumo-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15038757EFC34DE3BF7C2981 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		1521E1C3FE1730CCEF38000D /* EisenhowerMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EisenhowerMatrixView.swift; sourceTree = "<group>"; };
 		1834F0C6A7CCCDB31289DC93 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
 		19C07D0B81262B755198ED62 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		26E477F182188E2C09A9E04B /* HabitCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCategory.swift; sourceTree = "<group>"; };
@@ -261,6 +264,7 @@
 		2494B624043982D378FEB8C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1521E1C3FE1730CCEF38000D /* EisenhowerMatrixView.swift */,
 				CD5EC42A53895DFFFAE713C6 /* PomodoroTimerView.swift */,
 				6A233C01B85DB83DE0216397 /* TaskDetailView.swift */,
 				FF0030FAD099F3AE922069F3 /* TaskEditorView.swift */,
@@ -933,6 +937,7 @@
 				46418E7DDC425CCC58BD7EE1 /* ConflictResolver.swift in Sources */,
 				2F44847A205B89EEC107AF6D /* CryptoService.swift in Sources */,
 				2BBFB00C562B441804AE101E /* Date+Extensions.swift in Sources */,
+				A1262A953041F2BA31CFBBBF /* EisenhowerMatrixView.swift in Sources */,
 				F8EFBFB5BC43DDC92429895A /* FeedbackService.swift in Sources */,
 				501E9A32E62AD53E00E2799D /* Habit.swift in Sources */,
 				27B8CD5289811F2A208C9410 /* HabitCategory.swift in Sources */,
@@ -1005,6 +1010,7 @@
 				7AE4011641FFC857E9591F82 /* ConflictResolver.swift in Sources */,
 				923384599C7B1E79155B55C2 /* CryptoService.swift in Sources */,
 				E455C50E814D7A664FBB80A7 /* Date+Extensions.swift in Sources */,
+				F00143B8D5E6B4D84D5242EC /* EisenhowerMatrixView.swift in Sources */,
 				4CCA6A5F907B9921AA95BA07 /* FeedbackService.swift in Sources */,
 				0FBC6623C60FCAC6E2C7E808 /* Habit.swift in Sources */,
 				9A8BB7B059DCF4AF4F4F1D64 /* HabitCategory.swift in Sources */,

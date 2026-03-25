@@ -12,6 +12,7 @@ final class TasksViewModel: ObservableObject {
     @Published var tasks: [TaskItem] = []
     @Published var selectedList: TaskList?
     @Published var lists: [TaskList] = []
+    @Published var tags: [TaskTag] = []
     @Published var searchText: String = ""
     @Published var sortOption: SortOption = .dueDate
     @Published var filterOption: FilterOption = .all
@@ -29,11 +30,13 @@ final class TasksViewModel: ObservableObject {
     // MARK: - Dependencies
 
     private let modelContainer: ModelContainer
+    private let context: ModelContext
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Enums
 
     enum SortOption: String, CaseIterable, Identifiable {
+        case urgency = "Urgency"
         case dueDate = "Due Date"
         case priority = "Priority"
         case title = "Title"
@@ -43,6 +46,7 @@ final class TasksViewModel: ObservableObject {
 
         var localizedName: LocalizedStringKey {
             switch self {
+            case .urgency: return "sort.urgency"
             case .dueDate: return "sort.dueDate"
             case .priority: return "sort.priority"
             case .title: return "sort.title"
@@ -75,6 +79,7 @@ final class TasksViewModel: ObservableObject {
 
     init(modelContainer: ModelContainer = .shared) {
         self.modelContainer = modelContainer
+        self.context = ModelContext(modelContainer)
         setupSearchDebounce()
     }
 
@@ -84,7 +89,7 @@ final class TasksViewModel: ObservableObject {
         isLoading = true
         defer { isLoading = false }
 
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         do {
             // Load lists
@@ -92,6 +97,12 @@ final class TasksViewModel: ObservableObject {
                 sortBy: [SortDescriptor(\.sortOrder)]
             )
             lists = try context.fetch(listDescriptor)
+
+            // Load tags
+            let tagDescriptor = FetchDescriptor<TaskTag>(
+                sortBy: [SortDescriptor(\.name)]
+            )
+            tags = try context.fetch(tagDescriptor)
 
             // Load tasks based on current filters
             var predicate: Predicate<TaskItem>?
@@ -108,6 +119,8 @@ final class TasksViewModel: ObservableObject {
 
             // Apply sorting
             switch sortOption {
+            case .urgency:
+                descriptor.sortBy = [SortDescriptor(\.dueDate, order: .forward)]
             case .dueDate:
                 descriptor.sortBy = [SortDescriptor(\.dueDate, order: .forward)]
             case .priority:
@@ -119,6 +132,10 @@ final class TasksViewModel: ObservableObject {
             }
 
             var fetchedTasks = try context.fetch(descriptor)
+
+            if sortOption == .urgency {
+                fetchedTasks = fetchedTasks.sorted { urgencyScore($0) > urgencyScore($1) }
+            }
 
             // Apply filter
             fetchedTasks = applyFilter(to: fetchedTasks)
@@ -140,7 +157,7 @@ final class TasksViewModel: ObservableObject {
     }
 
     func loadLists() async {
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         do {
             let descriptor = FetchDescriptor<TaskList>(
@@ -161,9 +178,9 @@ final class TasksViewModel: ObservableObject {
         dueDate: Date? = nil,
         priority: TaskPriority = .none,
         list: TaskList? = nil,
-        tags: [TaskTag] = []
+        tagNames: [String] = []
     ) async {
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         let task = TaskItem(
             title: title,
@@ -173,7 +190,22 @@ final class TasksViewModel: ObservableObject {
         )
 
         task.list = list ?? selectedList
-        task.tags = tags
+
+        if !tagNames.isEmpty {
+            let allTags = (try? context.fetch(FetchDescriptor<TaskTag>())) ?? []
+            var taskTags: [TaskTag] = []
+            for name in tagNames {
+                let lower = name.lowercased()
+                if let existing = allTags.first(where: { $0.name.lowercased() == lower }) {
+                    taskTags.append(existing)
+                } else {
+                    let newTag = TaskTag(name: name)
+                    context.insert(newTag)
+                    taskTags.append(newTag)
+                }
+            }
+            task.tags = taskTags
+        }
 
         context.insert(task)
 
@@ -190,7 +222,7 @@ final class TasksViewModel: ObservableObject {
     }
 
     func updateTask(_ task: TaskItem) async {
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         task.updatedAt = Date()
         task.markAsModified()
@@ -205,7 +237,7 @@ final class TasksViewModel: ObservableObject {
     }
 
     func toggleTaskCompletion(_ task: TaskItem) async {
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         let wasCompleted = task.isCompleted
         task.isCompleted.toggle()
@@ -231,7 +263,7 @@ final class TasksViewModel: ObservableObject {
     }
 
     func deleteTask(_ task: TaskItem) async {
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         context.delete(task)
 
@@ -247,7 +279,7 @@ final class TasksViewModel: ObservableObject {
     func deleteTasks(at offsets: IndexSet) async {
         let tasksToDelete = offsets.map { tasks[$0] }
 
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         for task in tasksToDelete {
             context.delete(task)
@@ -263,7 +295,7 @@ final class TasksViewModel: ObservableObject {
     }
 
     func moveTask(_ task: TaskItem, to list: TaskList) async {
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         task.list = list
         task.updatedAt = Date()
@@ -282,7 +314,7 @@ final class TasksViewModel: ObservableObject {
         var reorderedTasks = tasks
         reorderedTasks.move(fromOffsets: source, toOffset: destination)
 
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         for (index, task) in reorderedTasks.enumerated() {
             task.sortOrder = index
@@ -301,7 +333,11 @@ final class TasksViewModel: ObservableObject {
     // MARK: - List Operations
 
     func createList(name: String, color: String, icon: String) async {
-        let context = ModelContext(modelContainer)
+        _ = await createListAndReturn(name: name, color: color, icon: icon)
+    }
+
+    func createListAndReturn(name: String, color: String, icon: String) async -> TaskList? {
+        let context = self.context
 
         let list = TaskList(name: name, color: color, icon: icon)
         list.sortOrder = lists.count
@@ -311,14 +347,16 @@ final class TasksViewModel: ObservableObject {
         do {
             try context.save()
             await loadLists()
+            return lists.first { $0.name == name }
         } catch {
             self.error = error
             self.showError = true
+            return nil
         }
     }
 
     func deleteList(_ list: TaskList) async {
-        let context = ModelContext(modelContainer)
+        let context = self.context
 
         // Move tasks to inbox or delete them
         for task in list.tasks ?? [] {
@@ -460,6 +498,29 @@ final class TasksViewModel: ObservableObject {
     func clearError() {
         error = nil
         showError = false
+    }
+
+    private func urgencyScore(_ task: TaskItem) -> Int {
+        let calendar = Calendar.current
+        var score = 0
+
+        // Time component: closer due date = higher score
+        if let due = task.dueDate {
+            let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: Date()), to: calendar.startOfDay(for: due)).day ?? 999
+            switch days {
+            case ..<0:  score += 100  // overdue
+            case 0:     score += 80   // today
+            case 1:     score += 60   // tomorrow
+            case 2...3: score += 40
+            case 4...7: score += 20
+            default:    score += 5
+            }
+        }
+
+        // Priority component
+        score += task.priority.rawValue * 10
+
+        return score
     }
 }
 

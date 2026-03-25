@@ -94,7 +94,7 @@ struct TaskDetailView: View {
                 Button("common.cancel", role: .cancel) {}
             }
             .sheet(isPresented: $showPomodoro) {
-                PomodoroTimerView(task: task)
+                PomodoroTimerView(task: task, viewModel: PomodoroViewModel())
             }
         }
     }
@@ -163,7 +163,7 @@ struct TaskDetailView: View {
             if let list = task.list {
                 DetailRow(
                     icon: list.icon,
-                    iconColor: Color(hex: list.color) ?? .accentColor,
+                    iconColor: Color(hex: list.color),
                     title: "tasks.list",
                     value: list.name
                 )

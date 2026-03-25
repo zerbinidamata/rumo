@@ -1,11 +1,12 @@
 import SwiftUI
 import Combine
+import UserNotifications
 
 /// Pomodoro timer view for focused work sessions
 struct PomodoroTimerView: View {
     let task: TaskItem?
+    @ObservedObject var viewModel: PomodoroViewModel
 
-    @StateObject private var viewModel = PomodoroViewModel()
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -224,6 +225,17 @@ final class PomodoroViewModel: ObservableObject {
 
     private var timer: AnyCancellable?
     private var sessionStartTime: Date?
+    private var backgroundedAt: Date?
+    private var sessionTaskTitle: String?
+
+    // MARK: - Session Tracking
+
+    @Published var sessionTaskId: UUID?
+
+    func startSession(for taskId: UUID, title: String?) {
+        sessionTaskId = taskId
+        sessionTaskTitle = title
+    }
 
     var completionMessage: LocalizedStringKey {
         switch currentPhase {
@@ -312,6 +324,8 @@ final class PomodoroViewModel: ObservableObject {
         currentPhase = .work
         completedPomodoros = 0
         remainingSeconds = workDuration * 60
+        sessionTaskId = nil
+        sessionTaskTitle = nil
     }
 
     func acknowledgeCompletion() {
@@ -374,6 +388,58 @@ final class PomodoroViewModel: ObservableObject {
             shortBreakDuration = profile.shortBreakDuration
             longBreakDuration = profile.longBreakDuration
         }
+    }
+
+    // MARK: - Background Handling
+
+    func handleBackground() {
+        guard isRunning else { return }
+        backgroundedAt = Date()
+        scheduleCompletionNotification(in: remainingSeconds, taskTitle: sessionTaskTitle)
+    }
+
+    func handleForeground() {
+        cancelCompletionNotification()
+        guard isRunning, let bg = backgroundedAt else {
+            backgroundedAt = nil
+            return
+        }
+        backgroundedAt = nil
+        let elapsed = Int(Date().timeIntervalSince(bg))
+        if elapsed >= remainingSeconds {
+            remainingSeconds = 0
+            completePhase()
+        } else {
+            remainingSeconds -= elapsed
+        }
+    }
+
+    private func scheduleCompletionNotification(in seconds: Int, taskTitle: String?) {
+        let content = UNMutableNotificationContent()
+        content.title = currentPhase == .work
+            ? String(localized: "pomodoro.notification.workDone")
+            : String(localized: "pomodoro.notification.breakDone")
+        if let title = taskTitle, currentPhase == .work {
+            content.body = title
+        }
+        content.sound = .default
+
+        let trigger = UNTimeIntervalNotificationTrigger(
+            timeInterval: max(1, TimeInterval(seconds)),
+            repeats: false
+        )
+        let request = UNNotificationRequest(
+            identifier: "pomodoro-completion",
+            content: content,
+            trigger: trigger
+        )
+        UNUserNotificationCenter.current().add(request)
+    }
+
+    private func cancelCompletionNotification() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(
+            withIdentifiers: ["pomodoro-completion"]
+        )
     }
 
     func saveSettings() {
@@ -471,5 +537,5 @@ struct PomodoroSettingsView: View {
 // MARK: - Preview
 
 #Preview {
-    PomodoroTimerView(task: TaskItem(title: "Sample Task", priority: .high))
+    PomodoroTimerView(task: TaskItem(title: "Sample Task", priority: .high), viewModel: PomodoroViewModel())
 }
